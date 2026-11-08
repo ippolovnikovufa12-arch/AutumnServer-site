@@ -1,0 +1,6 @@
+{
+  "name": "AUTUMN - Minecraft Сервер 26.2",
+  "description": "Официальный портал лампового ванильного Minecraft-сервера AUTUMN (версия 26.2). Справка, правила, список 15 самописных плагинов, ивенты, обновления и анкета для вступления.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
