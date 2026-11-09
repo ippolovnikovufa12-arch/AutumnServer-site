@@ -177,7 +177,12 @@ export default function App() {
           />
         )}
 
-        {currentTab === 'commands' && <CommandsTab />}
+        {currentTab === 'commands' && (
+          <CommandsTab
+            isAdmin={isAdmin}
+            onOpenAdmin={() => setAdminModalOpen(true)}
+          />
+        )}
 
         {currentTab === 'plugins' && <PluginsTab />}
 

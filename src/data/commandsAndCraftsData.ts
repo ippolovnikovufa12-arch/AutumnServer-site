@@ -1,13 +1,6 @@
-import { CraftRecipe } from '../types';
+import { CraftRecipe, CommandItem } from '../types';
 
-export interface CommandItem {
-  command: string;
-  category: 'decor' | 'teams' | 'games' | 'rp' | 'visual';
-  summary: string;
-  usage: string;
-  details: string;
-  tags: string[];
-}
+export type { CommandItem };
 
 export const SERVER_COMMANDS: CommandItem[] = [
   {
@@ -108,8 +101,8 @@ export const CUSTOM_CRAFT_RECIPES: CraftRecipe[] = [
     category: 'ice',
     image: '/assets/aistudio/image_ac071350.png',
     inputDescription: '4 блока обычного льда квадратом 2х2',
-    outputDescription: '2 блока плотного льда (Packed Ice)',
-    tags: ['лёд', 'плотный лёд', 'хайвей', 'лодки']
+    outputDescription: '2 блока плотного льда (х2)',
+    tags: ['лёд', 'плотный лёд', 'магистрали', 'лодки']
   },
   {
     id: 'craft-packed-to-blue',
@@ -117,34 +110,35 @@ export const CUSTOM_CRAFT_RECIPES: CraftRecipe[] = [
     category: 'ice',
     image: '/assets/aistudio/image_60dbd390.png',
     inputDescription: '4 блока плотного льда квадратом 2х2',
-    outputDescription: '2 блока ультраскоростного синего льда (Blue Ice)',
+    outputDescription: '2 блока ультраскоростного синего льда (х2)',
     tags: ['синий лёд', 'магистрали', 'незер']
   },
   {
     id: 'craft-amethyst-relic',
-    title: 'Аметистовый артефакт ветра',
+    title: 'Секретный крафт #1',
     category: 'artifacts',
     image: '/assets/aistudio/image_e2185eb5.png',
-    inputDescription: '3 аметистовых друзы сверху + 2 алмаза + 2 стержня бриза/железа',
-    outputDescription: 'Мистический кастомный артефакт с тайными свойствами (?)',
-    tags: ['артефакт', 'аметист', 'алмазы', 'кастомный предмет']
+    inputDescription: '3 осколка аметиста сверху + 2 алмаза по бокам + 2 стержня по центру',
+    outputDescription: '???',
+    tags: ['секрет', 'артефакт', 'аметист', 'алмазы']
   },
   {
     id: 'craft-ancient-core',
-    title: 'Древнее ядро глубин',
+    title: 'Секретный крафт #2',
     category: 'artifacts',
     image: '/assets/aistudio/image_5577a4ad.png',
-    inputDescription: 'Осколки эха древнего города + аметист + заготовки',
-    outputDescription: 'Уникальное ядро для активации алтаря трансмутации',
-    tags: ['ядро', 'эхо', 'варден', 'трансмутация']
+    inputDescription: '4 осколка эха крестом + 1 осколок аметиста в центре',
+    outputDescription: '???',
+    tags: ['секрет', 'артефакт', 'эхо', 'аметист']
   },
   {
     id: 'craft-transmutation-mechanism',
-    title: 'Алтарь трансмутации блоков',
+    title: 'Секретный крафт #3',
     category: 'mechanics',
     image: '/assets/aistudio/image_12aef52a.png',
-    inputDescription: 'Алмазы, блоки редстоуна и очищенные железные блоки',
-    outputDescription: 'Алтарь трансмутации для преобразования редких пород и блоков',
-    tags: ['алтарь', 'механизм', 'трансмутация']
+    inputDescription: '2 алмаза по бокам + 1 блок редстоуна по центру + 3 железных блока снизу',
+    outputDescription: '???',
+    tags: ['секрет', 'механизм', 'редстоун', 'алмазы', 'железо']
   }
 ];
+

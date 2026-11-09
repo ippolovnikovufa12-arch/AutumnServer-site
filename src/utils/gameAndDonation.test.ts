@@ -25,6 +25,10 @@ test('custom craft recipes are populated and include the 6 custom recipes', () =
     assert.ok(craft.inputDescription);
     assert.ok(craft.outputDescription);
   }
+  // Crafts 4, 5, 6 must have question marks as result
+  assert.equal(CUSTOM_CRAFT_RECIPES[3].outputDescription, '???');
+  assert.equal(CUSTOM_CRAFT_RECIPES[4].outputDescription, '???');
+  assert.equal(CUSTOM_CRAFT_RECIPES[5].outputDescription, '???');
 });
 
 test('custom plugins contain user descriptions', () => {

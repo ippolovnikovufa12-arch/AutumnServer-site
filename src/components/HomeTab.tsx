@@ -13,7 +13,8 @@ import {
   Flame,
   CheckCircle2,
   CalendarDays,
-  FileText
+  FileText,
+  Gamepad2
 } from 'lucide-react';
 import { AutumnLogo3D } from './AutumnLogo3D';
 import { soundManager } from '../utils/sound';
@@ -232,6 +233,54 @@ export const HomeTab: React.FC<HomeTabProps> = ({
 
         </div>
       </section>
+
+      {/* Featured Mini-Game Banner: Frog & Herobrine */}
+      {onNavigateToGame && (
+        <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div
+            onClick={() => {
+              soundManager.playClick();
+              onNavigateToGame();
+            }}
+            className="p-5 sm:p-6 rounded-2xl bg-gradient-to-r from-red-950/70 via-stone-900 to-amber-950/70 border border-red-500/50 hover:border-amber-400/70 transition-all duration-300 cursor-pointer shadow-xl group flex flex-col md:flex-row items-start md:items-center justify-between gap-4"
+          >
+            <div className="flex items-center gap-4">
+              <div className="w-14 h-14 rounded-2xl bg-red-500/20 border border-red-500/40 flex items-center justify-center text-3xl shrink-0 group-hover:scale-110 transition-transform">
+                🐸⚡
+              </div>
+              <div>
+                <div className="flex items-center gap-2 flex-wrap">
+                  <span className="text-xs font-mono font-bold uppercase tracking-wider text-red-400">
+                    Официальная мини-игра сервера
+                  </span>
+                  <span className="px-2 py-0.5 rounded-full text-[10px] font-mono bg-amber-500/20 text-amber-300 border border-amber-500/30">
+                    Цель: 50 000 очков
+                  </span>
+                </div>
+                <h3 className="text-lg sm:text-2xl font-black font-['Unbounded'] text-stone-100 mt-0.5 group-hover:text-amber-300 transition-colors">
+                  Пещерная лягушка и Херобрин
+                </h3>
+                <p className="text-xs text-stone-300 mt-1 max-w-xl">
+                  Спасайтесь от преследующего Херобрина, перепрыгивайте сталагмиты и летучих мышей. Наберите 50 000 очков и получите 10 аров от администрации!
+                </p>
+              </div>
+            </div>
+
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                soundManager.playClick();
+                onNavigateToGame();
+              }}
+              className="min-h-[44px] px-5 py-2.5 rounded-xl bg-gradient-to-r from-red-500 to-amber-400 hover:from-red-400 hover:to-amber-300 text-stone-950 font-['Unbounded'] font-bold text-xs flex items-center justify-center gap-2 shadow-md transition-all active:scale-95 cursor-pointer shrink-0"
+            >
+              <Gamepad2 className="w-4 h-4 text-stone-950" />
+              <span>Играть в аркаду</span>
+              <ArrowRight className="w-4 h-4" />
+            </button>
+          </div>
+        </section>
+      )}
 
       {/* How to Start Playing Section */}
       <section className="max-w-5xl mx-auto px-2 sm:px-6">

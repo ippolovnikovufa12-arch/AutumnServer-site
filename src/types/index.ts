@@ -72,9 +72,22 @@ export interface DonationOrder {
 export interface CraftRecipe {
   id: string;
   title: string;
-  category: 'ice' | 'artifacts' | 'mechanics';
+  category: 'ice' | 'artifacts' | 'mechanics' | 'showcase' | string;
   image: string;
   inputDescription: string;
   outputDescription: string;
   tags: string[];
+  isCustom?: boolean;
+}
+
+export interface CommandItem {
+  id?: string;
+  command: string;
+  category: 'decor' | 'teams' | 'games' | 'rp' | 'visual' | 'custom' | string;
+  summary: string;
+  usage: string;
+  details: string;
+  tags: string[];
+  image?: string;
+  isCustom?: boolean;
 }

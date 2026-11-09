@@ -14,7 +14,9 @@ import {
   RefreshCw,
   AlertCircle,
   CheckCircle2,
-  Sparkles
+  Sparkles,
+  Terminal,
+  Image as ImageIcon
 } from 'lucide-react';
 import { DonationOrder, ServerEvent, ServerUpdate } from '../types';
 import { soundManager } from '../utils/sound';
@@ -57,16 +59,24 @@ export const AdminPanelModal: React.FC<AdminPanelModalProps> = ({
   const [loginError, setLoginError] = useState('');
 
   // Admin tabs
-  const [activeAdminTab, setActiveAdminTab] = useState<'events' | 'updates' | 'donations' | 'security'>('events');
+  const [activeAdminTab, setActiveAdminTab] = useState<'events' | 'updates' | 'donations' | 'commands' | 'security'>('events');
 
   // Donation orders state
   const [donations, setDonations] = useState<DonationOrder[]>([]);
+  const [customCmdCount, setCustomCmdCount] = useState(0);
+  const [customCraftCount, setCustomCraftCount] = useState(0);
 
   React.useEffect(() => {
     if (isOpen) {
       try {
         const stored = localStorage.getItem('autumn_donations');
         if (stored) setDonations(JSON.parse(stored));
+
+        const storedCmds = localStorage.getItem('autumn_custom_commands_v2');
+        if (storedCmds) setCustomCmdCount(JSON.parse(storedCmds).length);
+
+        const storedCrafts = localStorage.getItem('autumn_custom_crafts_v2');
+        if (storedCrafts) setCustomCraftCount(JSON.parse(storedCrafts).length);
       } catch {}
     }
   }, [isOpen]);
@@ -254,11 +264,9 @@ export const AdminPanelModal: React.FC<AdminPanelModalProps> = ({
         {/* Unauthenticated State: Login Form */}
         {!isAdmin ? (
           <form onSubmit={handleLoginSubmit} className="space-y-4 max-w-md mx-auto py-6">
-            <div className="p-4 rounded-2xl bg-orange-950/30 border border-orange-500/30 text-xs text-amber-200/90 leading-relaxed">
-              <strong className="block text-amber-300 font-semibold mb-1">
-                🔑 Пароль администратора по умолчанию:
-              </strong>
-              Используйте <code className="bg-stone-900 px-1.5 py-0.5 rounded text-orange-400 font-mono font-bold">autumn2026admin</code> для входа. После входа пароль можно сменить в настройках.
+            <div className="p-4 rounded-2xl bg-stone-900/80 border border-stone-800 text-xs text-stone-400 leading-relaxed flex items-center gap-3">
+              <Lock className="w-4 h-4 text-orange-400 shrink-0" />
+              <span>Доступ разрешён только авторизованному администратору сервера AUTUMN. Введите секретный код доступа.</span>
             </div>
 
             <div>
@@ -341,6 +349,21 @@ export const AdminPanelModal: React.FC<AdminPanelModalProps> = ({
                 >
                   <Sparkles className="w-3.5 h-3.5 text-amber-400" />
                   <span>Донаты ({donations.length})</span>
+                </button>
+
+                <button
+                  onClick={() => {
+                    soundManager.playClick();
+                    setActiveAdminTab('commands');
+                  }}
+                  className={`px-3.5 py-1.5 rounded-xl text-xs sm:text-sm font-medium flex items-center gap-1.5 transition-colors cursor-pointer ${
+                    activeAdminTab === 'commands'
+                      ? 'bg-orange-600 text-white font-bold'
+                      : 'bg-stone-900 text-stone-300 hover:text-white'
+                  }`}
+                >
+                  <Terminal className="w-3.5 h-3.5 text-cyan-400" />
+                  <span>Команды ({customCmdCount})</span>
                 </button>
 
                 <button
@@ -780,7 +803,69 @@ export const AdminPanelModal: React.FC<AdminPanelModalProps> = ({
               </div>
             )}
 
-            {/* TAB 4: SECURITY & PASSWORD CHANGE */}
+            {/* TAB 4: COMMANDS & SCREENSHOTS MANAGEMENT OVERVIEW */}
+            {activeAdminTab === 'commands' && (
+              <div className="space-y-4">
+                <div className="p-4 rounded-2xl bg-gradient-to-r from-stone-900 to-stone-950 border border-orange-500/40 space-y-3">
+                  <div className="flex items-center gap-2">
+                    <Terminal className="w-5 h-5 text-orange-400" />
+                    <h3 className="text-sm font-bold font-['Unbounded'] text-stone-100">
+                      Управление командами и скриншотами
+                    </h3>
+                  </div>
+                  <p className="text-xs text-stone-300 leading-relaxed">
+                    Для администраторов прямо в разделе <strong className="text-orange-400">«Команды»</strong> на сайте активирована верхняя панель управления. Вы можете добавлять новые команды для игроков, прикреплять к ним скриншоты, а также загружать скриншоты новых крафтов и механизмов.
+                  </p>
+
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
+                    <div className="p-3 rounded-xl bg-stone-950/70 border border-stone-800">
+                      <span className="text-[10px] font-mono uppercase text-stone-400 block">Кастомные команды</span>
+                      <span className="text-xl font-bold font-['Unbounded'] text-orange-400">{customCmdCount}</span>
+                      <span className="text-[11px] text-stone-500 block mt-0.5">+ 10 базовых команд</span>
+                    </div>
+
+                    <div className="p-3 rounded-xl bg-stone-950/70 border border-stone-800">
+                      <span className="text-[10px] font-mono uppercase text-stone-400 block">Кастомные скриншоты и крафты</span>
+                      <span className="text-xl font-bold font-['Unbounded'] text-cyan-400">{customCraftCount}</span>
+                      <span className="text-[11px] text-stone-500 block mt-0.5">+ 6 базовых рецептов</span>
+                    </div>
+                  </div>
+
+                  <div className="pt-2 flex items-center gap-2 flex-wrap">
+                    <button
+                      onClick={() => {
+                        soundManager.playClick();
+                        onClose();
+                      }}
+                      className="px-4 py-2.5 rounded-xl font-['Unbounded'] font-bold text-xs bg-gradient-to-r from-orange-500 to-amber-500 text-stone-950 shadow-md cursor-pointer active:scale-95 flex items-center gap-2"
+                    >
+                      <Terminal className="w-4 h-4 text-stone-950" />
+                      <span>Открыть раздел Команды на сайте</span>
+                    </button>
+
+                    {(customCmdCount > 0 || customCraftCount > 0) && (
+                      <button
+                        onClick={() => {
+                          if (window.confirm('Сбросить все кастомные команды и скриншоты к стандартным?')) {
+                            soundManager.playClick();
+                            localStorage.removeItem('autumn_custom_commands_v2');
+                            localStorage.removeItem('autumn_custom_crafts_v2');
+                            setCustomCmdCount(0);
+                            setCustomCraftCount(0);
+                            alert('Кастомные элементы сброшены.');
+                          }
+                        }}
+                        className="px-3.5 py-2.5 rounded-xl text-xs font-mono text-red-400 hover:text-red-300 bg-red-950/40 border border-red-500/30 cursor-pointer"
+                      >
+                        Сбросить к исходным
+                      </button>
+                    )}
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {/* TAB 5: SECURITY & PASSWORD CHANGE */}
             {activeAdminTab === 'security' && (
               <form onSubmit={handlePasswordChangeSubmit} className="space-y-4 max-w-md mx-auto py-3">
                 <div className="p-4 rounded-2xl bg-stone-900 border border-stone-800 text-xs text-stone-300 leading-relaxed">

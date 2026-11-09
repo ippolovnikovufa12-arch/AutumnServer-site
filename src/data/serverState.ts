@@ -26,5 +26,5 @@ export const INITIAL_UPDATES: ServerUpdate[] = [
 
 export const DISCORD_INVITE_URL = 'https://discord.gg/CCydRxGBB';
 export const SERVER_VERSION = '26.2';
-export const ADMIN_DEFAULT_PASSWORD = 'autumn2026admin';
+export const ADMIN_DEFAULT_PASSWORD = '061206roM_!';
 
