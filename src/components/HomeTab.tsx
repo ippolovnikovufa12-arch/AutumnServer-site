@@ -254,14 +254,14 @@ export const HomeTab: React.FC<HomeTabProps> = ({
                     Официальная мини-игра сервера
                   </span>
                   <span className="px-2 py-0.5 rounded-full text-[10px] font-mono bg-amber-500/20 text-amber-300 border border-amber-500/30">
-                    Цель: 50 000 очков
+                    Цель: 30 000 очков
                   </span>
                 </div>
                 <h3 className="text-lg sm:text-2xl font-black font-['Unbounded'] text-stone-100 mt-0.5 group-hover:text-amber-300 transition-colors">
                   Пещерная лягушка и Херобрин
                 </h3>
                 <p className="text-xs text-stone-300 mt-1 max-w-xl">
-                  Спасайтесь от преследующего Херобрина, перепрыгивайте сталагмиты и летучих мышей. Наберите 50 000 очков и получите 10 аров от администрации!
+                  Спасайтесь от преследующего Херобрина, перепрыгивайте сталагмиты и летучих мышей. Наберите 30 000 очков и получите 10 аров от администрации!
                 </p>
               </div>
             </div>

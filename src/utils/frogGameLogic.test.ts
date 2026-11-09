@@ -13,14 +13,14 @@ import {
 } from './frogGameLogic';
 import { CommandItem } from '../types';
 
-test('FROG_WIN_TARGET_SCORE is 50000', () => {
-  assert.equal(FROG_WIN_TARGET_SCORE, 50000);
+test('FROG_WIN_TARGET_SCORE is 30000', () => {
+  assert.equal(FROG_WIN_TARGET_SCORE, 30000);
 });
 
-test('checkFrogWinCondition correctly identifies 50000 points win', () => {
-  assert.equal(checkFrogWinCondition(49999), false);
-  assert.equal(checkFrogWinCondition(50000), true);
-  assert.equal(checkFrogWinCondition(50500), true);
+test('checkFrogWinCondition correctly identifies 30000 points win', () => {
+  assert.equal(checkFrogWinCondition(29999), false);
+  assert.equal(checkFrogWinCondition(30000), true);
+  assert.equal(checkFrogWinCondition(30500), true);
 });
 
 test('calculateFrogScore increments score with dt, speed and combo', () => {
@@ -56,10 +56,10 @@ test('getHerobrineState provides position and danger metrics', () => {
   assert.equal(stateClose.isDangerouslyClose, true);
 });
 
-test('formatFrogVictoryClaim produces ticket with 50000 and Herobrine and 10 AR prize', () => {
-  const claim = formatFrogVictoryClaim('Steve', 50420);
-  assert.match(claim.hash, /AUTUMN-50K-50420-STEVE-10AR/);
-  assert.match(claim.text, /50\s*000/i);
+test('formatFrogVictoryClaim produces ticket with 30000 and Herobrine and 10 AR prize', () => {
+  const claim = formatFrogVictoryClaim('Steve', 30420);
+  assert.match(claim.hash, /AUTUMN-30K-30420-STEVE-10AR/);
+  assert.match(claim.text, /30\s*000/i);
   assert.match(claim.text, /ХЕРОБРИН/i);
   assert.match(claim.text, /10 аров от администрации/i);
 });

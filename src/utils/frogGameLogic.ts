@@ -1,6 +1,6 @@
 import { CommandItem } from '../types';
 
-export const FROG_WIN_TARGET_SCORE = 50000;
+export const FROG_WIN_TARGET_SCORE = 30000;
 
 export interface BoundingBox {
   x: number;
@@ -10,7 +10,7 @@ export interface BoundingBox {
 }
 
 /**
- * Check if the player has reached the 50,000 points threshold for the Herobrine reward.
+ * Check if the player has reached the 30,000 points threshold for the Herobrine reward.
  */
 export function checkFrogWinCondition(score: number): boolean {
   return score >= FROG_WIN_TARGET_SCORE;
@@ -73,16 +73,16 @@ export function getHerobrineState(
 }
 
 /**
- * Format the official claim ticket for Discord when 50,000 points are reached.
+ * Format the official claim ticket for Discord when 30,000 points are reached.
  */
 export function formatFrogVictoryClaim(nickname: string, score: number): { hash: string; text: string } {
   const roundedScore = Math.floor(score);
   const cleanNick = (nickname || 'Player').toUpperCase().replace(/[^A-Z0-9_]/gi, '');
-  const hash = `AUTUMN-50K-${roundedScore}-${cleanNick}-10AR`;
+  const hash = `AUTUMN-30K-${roundedScore}-${cleanNick}-10AR`;
 
-  const text = `👑 **ЗАЯВКА НА НАГРАДУ В ИГРЕ "ПЕЩЕРНАЯ ЛЯГУШКА" (50 000+ ОЧКОВ)**
+  const text = `👑 **ЗАЯВКА НА НАГРАДУ В ИГРЕ "ПЕЩЕРНАЯ ЛЯГУШКА" (30 000+ ОЧКОВ)**
 👤 Ник в Minecraft: \`${cleanNick}\`
-🏆 Финальный счёт: **${roundedScore.toLocaleString('ru-RU')}** / 50 000 очков
+🏆 Финальный счёт: **${roundedScore.toLocaleString('ru-RU')}** / 30 000 очков
 ⚡ Повержен противник: **ХЕРОБРИН (HEROBRINE)**
 🔐 Проверочный хэш: \`${hash}\`
 🎁 Награда: **10 аров от администрации**

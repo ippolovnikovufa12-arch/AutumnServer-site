@@ -580,7 +580,7 @@ export const FrogGameTab: React.FC = () => {
       // ================= HUD INSIDE CANVAS =================
       ctx.fillStyle = '#f59e0b';
       ctx.font = 'bold 13px monospace';
-      ctx.fillText(`СЧЕТ: ${currentScoreInt.toLocaleString('ru-RU')} / 50 000`, 16, 24);
+      ctx.fillText(`СЧЕТ: ${currentScoreInt.toLocaleString('ru-RU')} / 30 000`, 16, 24);
 
       // Combo & Herobrine warning
       ctx.fillStyle = '#ef4444';
@@ -593,7 +593,7 @@ export const FrogGameTab: React.FC = () => {
         ctx.fillText(`КОМБО: x${s.combo} 🔥 (+${calculateDodgeBonus(s.combo)} за прыжок)`, width - 230, 24);
       }
 
-      // Progress bar to 50k
+      // Progress bar to 30k
       const progressRatio = Math.min(1, currentScoreInt / FROG_WIN_TARGET_SCORE);
       ctx.fillStyle = '#292524';
       ctx.fillRect(16, 48, width - 32, 5);
@@ -650,7 +650,7 @@ export const FrogGameTab: React.FC = () => {
           Пещерная лягушка и Херобрин
         </h1>
         <p className="text-xs sm:text-sm text-stone-300 max-w-xl mx-auto leading-relaxed">
-          За лягушкой по пятам гонится зловещий <strong className="text-red-400">Херобрин</strong>! Уклоняйтесь от сталагмитов, летучих мышей и сланцевых шипов. Наберите <strong className="text-amber-300 font-bold">50 000 очков</strong>, чтобы победить и забрать <strong className="text-cyan-400">10 аров от администрации</strong>!
+          За лягушкой по пятам гонится зловещий <strong className="text-red-400">Херобрин</strong>! Уклоняйтесь от сталагмитов, летучих мышей и сланцевых шипов. Наберите <strong className="text-amber-300 font-bold">30 000 очков</strong>, чтобы победить и забрать <strong className="text-cyan-400">10 аров от администрации</strong>!
         </p>
       </div>
 
@@ -672,7 +672,7 @@ export const FrogGameTab: React.FC = () => {
               Введите никнейм игрока
             </h2>
             <p className="text-xs text-stone-400 mt-1">
-              Ник нужен для фиксации рекорда и выдачи награды за 50 000 очков!
+              Ник нужен для фиксации рекорда и выдачи награды за 30 000 очков!
             </p>
           </div>
 
@@ -705,7 +705,7 @@ export const FrogGameTab: React.FC = () => {
           {/* Reward preview box */}
           <div className="p-3 rounded-xl bg-stone-950 border border-stone-800 text-left text-xs space-y-1">
             <span className="text-[10px] uppercase font-mono text-amber-400 font-bold block">
-              🎁 Главный приз за 50 000 очков:
+              🎁 Главный приз за 30 000 очков:
             </span>
             <p className="text-stone-300 text-[11px] leading-relaxed">
               • <strong className="text-cyan-400 font-bold">10 аров</strong> от администрации сервера AUTUMN
@@ -771,11 +771,11 @@ export const FrogGameTab: React.FC = () => {
                 </h3>
 
                 <p className="text-xs text-stone-300 font-mono">
-                  Счёт: <span className="text-amber-300 font-bold">{score.toLocaleString('ru-RU')}</span> / 50 000 ({winProgressPercent}%)
+                  Счёт: <span className="text-amber-300 font-bold">{score.toLocaleString('ru-RU')}</span> / 30 000 ({winProgressPercent}%)
                 </p>
 
                 <p className="text-[11px] text-stone-400 max-w-sm">
-                  Херобрин скрылся во тьме пещеры. Соберитесь с силами и попробуйте дойти до 50 000 очков!
+                  Херобрин скрылся во тьме пещеры. Соберитесь с силами и попробуйте дойти до 30 000 очков!
                 </p>
 
                 <button
@@ -788,7 +788,7 @@ export const FrogGameTab: React.FC = () => {
               </div>
             )}
 
-            {/* VICTORY OVERLAY (>= 50,000 PTS) */}
+            {/* VICTORY OVERLAY (>= 30,000 PTS) */}
             {isWon && (
               <div className="absolute inset-0 bg-stone-950/95 backdrop-blur-md flex flex-col items-center justify-center p-4 sm:p-6 text-center space-y-3 animate-in zoom-in-95 duration-300">
                 <div className="w-14 h-14 rounded-2xl bg-amber-500/20 border border-amber-500/50 flex items-center justify-center text-amber-400 text-3xl shadow-xl shadow-amber-500/30 animate-bounce">
@@ -823,7 +823,7 @@ export const FrogGameTab: React.FC = () => {
                     className="min-h-[42px] px-5 py-2.5 rounded-xl font-['Unbounded'] font-bold text-xs bg-gradient-to-r from-amber-400 to-orange-500 text-stone-950 flex items-center justify-center gap-2 cursor-pointer shadow-md active:scale-95"
                   >
                     {copiedClaim ? <Check className="w-4 h-4 text-emerald-950" /> : <Copy className="w-4 h-4" />}
-                    <span>{copiedClaim ? 'Скопировано!' : 'Скопировать заявку на 50 000 очков'}</span>
+                    <span>{copiedClaim ? 'Скопировано!' : 'Скопировать заявку на 30 000 очков'}</span>
                   </button>
 
                   <a
